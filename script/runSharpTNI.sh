@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$4" != "" ]; then
-  echo "gammaMin nSankoff nTNI Time" > $4
+if [ "$3" != "" ]; then
+  echo "gammaMin nSankoff nTNI Time" > $3
 else
   echo "not enough arguments"
   exit 0
@@ -22,17 +22,14 @@ else
   exit 0
 fi
 
-if [ "$3" != "" ]; then
-  enumFileName=$3
-else
-  echo "not enough arguments"
-  exit 0
-fi
+enumFileName="temp.out"
 
 gammaMax=$(./sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 | grep 'Infection' | cut -d: -f 2)
 gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) - 1 ))
 
 numSankoff=$(./sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 | grep 'Sankoff solutions' | cut -d: -f 2 | sed -e 's/ //g')
+
+rm -rf $enumFileName
 
 echo "gammaMax is $gammaMax and gammaMin is $gammaMin"
 
@@ -41,7 +38,12 @@ do
   dimacsFileName="dimacs.cnf"
   varListFileName="varList.out"
 
-  dimacsFolderName="dimacs"
+  if [ "$4" != "" ]; then
+    dimacsFolderName=$4
+  else
+	echo "not enough arguments"
+	exit 0
+  fi
 
   echo "checking for $gamma"
 
@@ -69,7 +71,7 @@ do
 
       totaltime=$(python UniGen2.py -samples=11000 "$dimacsFileName" "$dimacsFolderName" | grep 'Total time for all UniGen2 calls' $tmpFileName | cut -d' ' -f 7)
 
-      echo "$gamma $numSankoff $numTNI $totaltime" >> $4
+      echo "$gamma $numSankoff $numTNI $totaltime" >> $3
       echo "minimum satisfiable gamma is $gamma"
       break
   fi
