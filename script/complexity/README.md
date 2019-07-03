@@ -1,4 +1,4 @@
-## Unsatisfiable:
+## Satisfiable:
 
 ```
 $ python 3sat2tni.py 3 2 1 2 -3 -1 -2 -3 > sat_tree.txt 2>
