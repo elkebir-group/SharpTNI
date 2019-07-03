@@ -1,10 +1,33 @@
 #!/bin/bash
 
-echo "gammaMin nSankoff nTNI Time" > $4
+if [ "$4" != "" ]; then
+  echo "gammaMin nSankoff nTNI Time" > $4
+else
+  echo "not enough arguments"
+  exit 0
+fi
 
-hostFileName=$1
-ptreeFileName=$2
-enumFileName=$3
+
+if [ "$1" != "" ]; then
+  hostFileName=$1
+else
+  echo "not enough arguments"
+  exit 0
+fi
+
+if [ "$2" != "" ]; then
+  ptreeFileName=$2
+else
+  echo "not enough arguments"
+  exit 0
+fi
+
+if [ "$3" != "" ]; then
+  enumFileName=$3
+else
+  echo "not enough arguments"
+  exit 0
+fi
 
 gammaMax=$(./sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 | grep 'Infection' | cut -d: -f 2)
 gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) - 1 ))
