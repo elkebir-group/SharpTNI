@@ -1,0 +1,35 @@
+
+Gurobi 8.1.0 (mac64, Python) logging started Wed Mar 20 11:54:41 2019
+
+Academic license - for non-commercial use only
+Read LP format model from file /tmp/test2.lp
+Reading time = 0.01 seconds
+obj: 490 rows, 105 columns, 984 nonzeros
+Optimize a model with 490 rows, 105 columns and 984 nonzeros
+Variable types: 0 continuous, 105 integer (105 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e-02, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 381 rows and 70 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+      Constraints           Bounds       Runtime
+     Min       Max       Min      Max
+------------------------------------------------
+        0      490         0        0         0s
+       14       14         0        0         0s
+
+IIS computed: 14 constraints, 0 bounds
+IIS runtime: 0.06 seconds
