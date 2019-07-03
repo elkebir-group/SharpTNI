@@ -50,10 +50,10 @@ The compilation results in the following files in the `build' directory
 
 EXECUTABLE       | DESCRIPTION
 -----------------|-------------
-`sankoff`        | The Coordinate Ascent approach to the MCT problem.
-`sample_sankoff` | The MILP approach to the MCT problem.
-`gamma`          | The Brute Force approach to the MCT problem.
-`dimacs`         | Visualizes a phylogenetic tree in Graphviz DOT format.
+`sankoff`        | count/enumerate the minimum transmission number host labelings
+`sample_sankoff` | uniformly sample minimum transmission number host labelings
+`gamma`          | optimum clique partitioning for a given host labeling
+`dimacs`         | SAT formulation for SharpTNI problem
 
 <a name="usage"></a>
 ## Usage instructions
