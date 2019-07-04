@@ -32,8 +32,8 @@ parsimonious transmission network.
      * [I/O formats](#io)
      * [Sankoff Labeling](#sankoff)
      * [Sample Sankoff](#sample)
-     * [Optimum Clique Partitioning](#gamma)
-     * [SAT Formulation](#dimacs)
+     * [Optimum Clique Partitioning](#clique)
+     * [SAT Formulation](#sat)
 
 <a name="compilation"></a>
 ## Compilation instructions
