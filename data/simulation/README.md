@@ -1,6 +1,6 @@
 # Simulated Data
 
-We provide a script runSharpTNIsimulation.sh that will execute our
+We provide a script `runSharpTNIsimulation.sh` that will execute our
 method on the simulated data. To run the script the following
 executables and scripts must be in this folder
   1. sankoff
