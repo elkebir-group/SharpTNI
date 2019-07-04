@@ -12,9 +12,9 @@ described by a timed phylogeny T, assigning a time-stamp to
 every vertex.
 In addition, each leaf is labeled by the host where
 the corresponding strain was observed (indicated by colors).
-Epidemiological data further constrain the entrance and removal time of each host $s$.
+Epidemiological data further constrain the entrance and removal time of each host.
 In the TNI problem, we seek a host labeling with minimum
-transmission number and subsequently smallest co-transmission number $\gamma$.
+transmission number and subsequently smallest co-transmission number.
 (b) Host labeling with minimum transmission but not
 the smallest co-transmission number, resulting in a complex
 transmission network.
