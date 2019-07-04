@@ -1,41 +1,66 @@
 #!/bin/bash
 exec_dir="../build"
 
+echo "$5"
+
+if [ $# != 6 -a $# != 7 ]
+then
+  echo "Usage: $0 <number of unsampled hosts> <number of uniform samples> <host file> <ptree file> <log file> <unigen output dir> (<exec dir>, default='../build')"
+  exit 1
+fi
+
+if [ $# -gt 6 ]
+then
+  exec_dir=$7
+fi
+
+nh=$1
+nsamples=$2
+hostFileName=$3
+ptreeFileName=$4
+logFile=$5
+dimacsFolderName=$6
+
+echo "gammaMin nSankoff nTNI Time" > $logFile
+
 if [ ! -e $exec_dir/sankoff ]
 then
   echo "Missing executable $exec_dir/sankoff"
   exit 1
+elif [ ! -e $exec_dir/dimacs ]
+then
+  echo "Missing executable $exec_dir/dimacs"
+  exit 1
+elif [ ! -e $exec_dir/approxmc ]
+then
+  echo "Mising executable $exec_dir/approxmc"
+  exit 1
+elif [ ! -e $exec_dir/unigen ]
+then
+  echo "Missing executable $exec_dir/unigen"
+  exit 1
+elif [ ! -f $exec_dir/UniGen2.py ];
+then
+  echo "Missing script $exec_dir/Unigen2.py"
+  exit 1
 fi
 
-if [ "$3" != "" ]; then
-  echo "gammaMin nSankoff nTNI Time" > $3
-else
-  echo "Usage: $0 <ARG1> <ARG2> ..."
-  echo "not enough arguments"
-  exit 0
-fi
-
-
-if [ "$1" != "" ]; then
-  hostFileName=$1
-else
-  echo "not enough arguments"
-  exit 0
-fi
-
-if [ "$2" != "" ]; then
-  ptreeFileName=$2
-else
-  echo "not enough arguments"
-  exit 0
-fi
+ln -s $exec_dir/unigen unigen
 
 enumFileName="temp.out"
 
-gammaMax=$(./sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 | grep 'Infection' | cut -d: -f 2)
-gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) - 1 ))
+gammaMax=$( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 -u $nh | grep 'Infection' | cut -d: -f 2)
 
-numSankoff=$(./sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 | grep 'Sankoff solutions' | cut -d: -f 2 | sed -e 's/ //g')
+if [ $nh -gt 0 ]
+then
+  gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) ))
+else
+  gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) - 1 ))
+fi
+
+#gammaMin=$(( $( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0  -u $nh | grep 'number of hosts' | cut -d' ' -f 5) - 1 ))
+
+numSankoff=$( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 -u $nh | grep 'Sankoff solutions' | cut -d: -f 2 | sed -e 's/ //g')
 
 rm -rf $enumFileName
 
@@ -43,21 +68,14 @@ echo "gammaMax is $gammaMax and gammaMin is $gammaMin"
 
 for gamma in $(seq $gammaMin $gammaMax)
 do
-  dimacsFileName="dimacs.cnf"
-  varListFileName="varList.out"
-
-  if [ "$4" != "" ]; then
-    dimacsFolderName=$4
-  else
-	echo "not enough arguments"
-	exit 0
-  fi
+  dimacsFileName=$dimacsFolderName/"dimacs.cnf"
+  varListFileName=$dimacsFolderName/"varList.out"
 
   echo "checking for $gamma"
 
-  ./dimacs "$hostFileName" "$ptreeFileName" "$dimacsFileName" "$varListFileName" -k $gamma &> /dev/null
+  $exec_dir/dimacs "$hostFileName" "$ptreeFileName" "$dimacsFileName" "$varListFileName" -k $gamma &> /dev/null
 
-  numStringTNI=$(./approxmc "$dimacsFileName"| grep 'Number of solutions' | cut -d: -f 2)
+  numStringTNI=$( $exec_dir/approxmc "$dimacsFileName"| grep 'Number of solutions' | cut -d: -f 2)
   preExponentTNI=$(echo "$numStringTNI" | cut -dx -f 1)
   numlogTNI=$(echo "$numStringTNI" | cut -d^ -f 2)
 
@@ -77,9 +95,9 @@ do
         done
     fi
 
-      totaltime=$(python UniGen2.py -samples=11000 "$dimacsFileName" "$dimacsFolderName" | grep 'Total time for all UniGen2 calls' $tmpFileName | cut -d' ' -f 7)
+      totaltime=$(python $exec_dir/UniGen2.py -samples=$nsamples "$dimacsFileName" "$dimacsFolderName" | grep 'Total time for all UniGen2 calls' $tmpFileName | cut -d' ' -f 7)
 
-      echo "$gamma $numSankoff $numTNI $totaltime" >> $3
+      echo "$gamma $numSankoff $numTNI $totaltime" >> $logFile
       echo "minimum satisfiable gamma is $gamma"
       break
   fi
@@ -87,3 +105,5 @@ do
   echo ""
 
 done
+
+rm -rf unigen 
