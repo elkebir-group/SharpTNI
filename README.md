@@ -10,7 +10,7 @@ minimum transmission number and a fixed co-tranmsission number.
 
   1. [Compilation instructions](#compilation)
      * [Dependencies](#dep)
-     * [Compilation] (#comp)
+     * [Compilation](#comp)
   2. [Usage instcructions](#usage)
      * [I/O formats](#io)
      * [Sankoff Labeling](#sankoff)
@@ -71,7 +71,7 @@ format for each line of the ptree file is '<node name> <child1 name> <child2 nam
 
 <a name="sankoff"></a>
 
-###  Sankoff Labeling (`sankoff')
+###  Sankoff Labeling (`sankoff`)
 
 	Usage:
 	  ./sankoff [--help|-h|-help] [-b] [-c] [-e] [-l int] [-r int] [-t] [-u
@@ -98,10 +98,10 @@ format for each line of the ptree file is '<node name> <child1 name> <child2 nam
 
 An example execution:
 
-  $ ./sankoff ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_enum.out -u 1 -e -l 5
+    $ ./sankoff ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_enum.out -u 1 -e -l 5
 
 <a name="sample"></a>
-### Sankoff Sampling (`sample_sankoff')
+### Sankoff Sampling (`sample_sankoff`)
 
 	Usage:
 	  ./sample_sankoff [--help|-h|-help] [-b] [-l int] [-r int] [-u int]
@@ -121,12 +121,12 @@ An example execution:
 
 An example execution:
 
-  $ ./sample_sankoff -l 1 -u 1 ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample
+    $ ./sample_sankoff -l 1 -u 1 ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample
 
 
 <a name="clique"></a>
 
-### Optimum Clique Partitioning (`gamma')
+### Optimum Clique Partitioning (`gamma`)
 
 	Usage:
 	  ./gamma [--help|-h|-help] [-b] [-u int] <host> <ptree_sol>
@@ -140,12 +140,12 @@ An example execution:
 
 An example execution:
 
-  $ ./gamma -u 1 ../data/sample/sample_host.out ../data/sample/sample_idx0_count1.out 2> ../data/sample/example.dot
-  $ dot -Tpng ../data/sample/example.dot -o ../data/sample/example.png
+    $ ./gamma -u 1 ../data/sample/sample_host.out ../data/sample/sample_idx0_count1.out 2> ../data/sample/example.dot
+    $ dot -Tpng ../data/sample/example.dot -o ../data/sample/example.png
 
 <a name="sat"></a>
 
-### SAT formulation (`dimacs')
+### SAT formulation (`dimacs`)
 
 	Usage:
 	  ./dimacs [--help|-h|-help] [-k int] [-r int] [-t] [-u int]
@@ -165,4 +165,4 @@ An example execution:
 
 An example execution:
 
-  $ ./dimacs ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_dimacs.cnf ../data/sample/sample_varlist.txt -u 1 -k 4
+    $ ./dimacs ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_dimacs.cnf ../data/sample/sample_varlist.txt -u 1 -k 4
