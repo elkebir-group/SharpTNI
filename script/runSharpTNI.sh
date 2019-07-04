@@ -1,8 +1,16 @@
 #!/bin/bash
+exec_dir="../build"
+
+if [ ! -e $exec_dir/sankoff ]
+then
+  echo "Missing executable $exec_dir/sankoff"
+  exit 1
+fi
 
 if [ "$3" != "" ]; then
   echo "gammaMin nSankoff nTNI Time" > $3
 else
+  echo "Usage: $0 <ARG1> <ARG2> ..."
   echo "not enough arguments"
   exit 0
 fi
