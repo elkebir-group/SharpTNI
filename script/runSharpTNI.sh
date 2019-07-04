@@ -50,7 +50,14 @@ ln -s $exec_dir/unigen unigen
 enumFileName="temp.out"
 
 gammaMax=$( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 -u $nh | grep 'Infection' | cut -d: -f 2)
-gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) + $nh - 1 ))
+
+if [ $nh -gt 0 ]
+then
+  gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) ))
+else
+  gammaMin=$(( $(wc -l "$hostFileName" | rev | cut -d' ' -f2 | rev) - 1 ))
+fi
+
 #gammaMin=$(( $( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0  -u $nh | grep 'number of hosts' | cut -d' ' -f 5) - 1 ))
 
 numSankoff=$( $exec_dir/sankoff "$hostFileName" "$ptreeFileName" "$enumFileName" -e -l 0 -u $nh | grep 'Sankoff solutions' | cut -d: -f 2 | sed -e 's/ //g')
@@ -99,4 +106,4 @@ do
 
 done
 
-rm -rf unigen
+rm -rf unigen dimacs.cnf varList.out
