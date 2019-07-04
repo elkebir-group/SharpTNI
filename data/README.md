@@ -19,3 +19,4 @@ collected from patients of the 2014 Sierra Leone Ebola outbreak. It also
 has input files readable for SCOTTI script to generate the xml file that
 can be used to run on BEAST. We also provide the generated xml file.
 
+Results generated using this data are available at https://doi.org/10.13012/B2IDB-9734610_V1
