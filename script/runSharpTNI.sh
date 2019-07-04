@@ -68,8 +68,8 @@ echo "gammaMax is $gammaMax and gammaMin is $gammaMin"
 
 for gamma in $(seq $gammaMin $gammaMax)
 do
-  dimacsFileName="dimacs.cnf"
-  varListFileName="varList.out"
+  dimacsFileName=$dimacsFolderName/"dimacs.cnf"
+  varListFileName=$dimacsFolderName/"varList.out"
 
   echo "checking for $gamma"
 
@@ -106,4 +106,4 @@ do
 
 done
 
-rm -rf unigen dimacs.cnf varList.out
+rm -rf unigen 
