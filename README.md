@@ -62,8 +62,8 @@ EXECUTABLE       | DESCRIPTION
 ### I/O formats
 
 The SharpTNI input is text based. There are two input files, host file
-and ptree file. The . Each line of the host file has exactly 3 entries separated by ' '.
-The format of each line of the host file is '<host name> <entry time> <removal time>' in
+and ptree file. Each line of the host file has exactly 3 entries separated by ' '.
+The format of each line of the host file is '\<host name\> \<entry time\> \<removal time\>' in
 each line. The number of lines in the host file is the number of sampled hosts.
 A ptree file gives the timed phylogeny with the leaf labeling. Each line
 of ptree file has exactly 4 entries separated by ' '. The
