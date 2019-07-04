@@ -7,7 +7,20 @@ also counts and samples the solution space of transmission networks with
 minimum transmission number and a fixed co-tranmsission number.
 
 ![Overview of SharpTNI problem](overview.png)
-![equation](https://latex.codecogs.com/gif.latex?%5Ctext%7BThe%20evolutionary%20history%20of%20the%20pathogenic%20strains%20in%20an%20outbreak%20is%20described%20by%20a%20timed%20phylogeny%20%7D%20%24T%24%5Ctext%7B%2C%20assigning%20a%20time-stamp%20%7D%24%5Ctau%28v%29%24%5Ctext%7B%20to%20every%20vertex%20%7D%24v%24.%5Ctext%7B%20In%20addition%2C%20each%20leaf%20%7D%24v%24%5Ctext%7B%20is%20labeled%20by%20the%20host%20%7D%24%5Chat%7B%5Cell%7D%28v%29%24%5Ctext%7B%20where%20the%20corresponding%20strain%20was%20observed%20%28indicated%20by%20colors%29.%20Epidemiological%20data%20further%20constrain%20the%20entrance%20and%20removal%20time%20%7D%24%5B%5Ctaue%28s%29%2C%5Ctaur%28s%29%24%5Ctext%7B%20of%20each%20host%20%7D%24s%24%5Ctext%7B.%20In%20the%20TNI%20problem%2C%20we%20seek%20a%20host%20labeling%20%7D%24%5Cell%24%5Ctext%7B%20with%20minimum%20transmission%20number%20%7D%24%5Cmu%24%5Ctext%7B%20and%20subsequently%20smallest%20co-transmission%20number%20%7D%24%5Cgamma%24%5Ctext%7B.%20%28b%29%20Host%20labeling%20%7D%24%5Cell_b%24%5Ctext%7B%20with%20minimum%20transmission%20%7D%24%5Cmu%5E*%3D4%24%5Ctext%7B%20but%20not%20the%20smallest%20co-transmission%20number%20%7D%24%5Cgamma%3D4%24%5Ctext%7B%2C%20resulting%20in%20a%20complex%20transmission%20network%20%7D%24N_b%24%5Ctext%7B.%20%28c%29%20Host%20labeling%20%7D%24%5Cell_c%24%5Ctext%7B%20with%20minimum%20transmission%20%7D%24%5Cmu%5E*%3D4%24%5Ctext%7B%20and%20smallest%20co-transmission%20number%20%7D%24%5Cgamma%5E*%3D2%24%5Ctext%7B%2C%20resulting%20in%20a%20parsimonious%20transmission%20network%20%7D%24N_c%24.)
+The evolutionary history of the pathogenic strains in an outbreak is
+described by a timed phylogeny T, assigning a time-stamp to
+every vertex.
+In addition, each leaf is labeled by the host where
+the corresponding strain was observed (indicated by colors).
+Epidemiological data further constrain the entrance and removal time of each host $s$.
+In the TNI problem, we seek a host labeling with minimum
+transmission number and subsequently smallest co-transmission number $\gamma$.
+(b) Host labeling with minimum transmission but not
+the smallest co-transmission number, resulting in a complex
+transmission network.
+(c) Host labeling with minimum transmission and
+smallest co-transmission number, resulting in a
+parsimonious transmission network.
 
 
 ## Contents
