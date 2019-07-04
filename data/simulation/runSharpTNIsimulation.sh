@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home_dir="/home/sashitt2/TNI/data/recomb/simulation/cases"
+home_dir=$(pwd)
 
 echo "m kappa case# gammaMin nSankoff nTNI Time" > total.time
 
