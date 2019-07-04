@@ -10,7 +10,7 @@ minimum transmission number and a fixed co-tranmsission number.
 
   1. [Compilation instructions](#compilation)
      * [Dependencies](#dep)
-     * [Compilatilon] (#comp)
+     * [Compilation] (#comp)
   2. [Usage instcructions](#usage)
      * [I/O formats](#io)
      * [Sankoff Labeling](#sankoff)
@@ -60,3 +60,109 @@ EXECUTABLE       | DESCRIPTION
 
 <a name="io"></a>
 ### I/O formats
+
+The SharpTNI input is text based. There are two input files, host file
+and ptree file. The . Each line of the host file has exactly 3 entries separated by ' '.
+The format of each line of the host file is '<host name> <entry time> <removal time>' in
+each line. The number of lines in the host file is the number of sampled hosts.
+A ptree file gives the timed phylogeny with the leaf labeling. Each line
+of ptree file has exactly 4 entries separated by ' '. The
+format for each line of the ptree file is '<node name> <child1 name> <child2 name> <host label>'. The number of lines in the ptree file is the number of nodes in the timed phylogeny. The nodes of the tree in the file must be in post-order (all nodes must be preceded by their children). For a leaf the <child name> must be '0'.
+
+<a name="sankoff"></a>
+
+###  Sankoff Labeling (`sankoff')
+
+	Usage:
+	  ./sankoff [--help|-h|-help] [-b] [-c] [-e] [-l int] [-r int] [-t] [-u
+	int]
+	     <host> / <transmission_tree> <ptree> <output_ptree>
+	Where:
+	  --help|-h|-help
+	     Print a short help message
+	  -b
+	     is the tree non binary (default: false)
+	  -c
+	     Find consensus Sankoff solution (deafault: false)
+	  -e
+	     Enumerate all the solutions (default: false)
+	  -l int
+	     Enumeration solution number limit (default: intMax)
+	  -r int
+	     Root label (default: 0)
+	  -t
+	     Transmission tree instead of host file
+	  -u int
+	     Number of unsampled hosts (default: 0)
+
+
+An example execution:
+
+  $ ./sankoff ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_enum.out -u 1 -e -l 5
+
+<a name="sample"></a>
+### Sankoff Sampling (`sample_sankoff')
+
+	Usage:
+	  ./sample_sankoff [--help|-h|-help] [-b] [-l int] [-r int] [-u int]
+	<host>
+	     <ptree> <output_prefix>
+	Where:
+	  --help|-h|-help
+	     Print a short help message
+	  -b
+	     is the tree non binary (default: false)
+	  -l int
+	     Number of samples (default: 11000)
+	  -r int
+	     Root label (default: 0)
+	  -u int
+	     Number of unsampled hosts (default: 0)
+
+An example execution:
+
+  $ ./sample_sankoff -l 1 -u 1 ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample
+
+
+<a name="clique"></a>
+
+### Optimum Clique Partitioning (`gamma')
+
+	Usage:
+	  ./gamma [--help|-h|-help] [-b] [-u int] <host> <ptree_sol>
+	Where:
+	  --help|-h|-help
+	     Print a short help message
+	  -b
+	     is the tree non binary (default: false)
+	  -u int
+	     Number of unsampled hosts (default: 0)
+
+An example execution:
+
+  $ ./gamma -u 1 ../data/sample/sample_host.out ../data/sample/sample_idx0_count1.out 2> ../data/sample/example.dot
+  $ dot -Tpng ../data/sample/example.dot -o ../data/sample/example.png
+
+<a name="sat"></a>
+
+### SAT formulation (`dimacs')
+
+	Usage:
+	  ./dimacs [--help|-h|-help] [-k int] [-r int] [-t] [-u int]
+	     <host> / <transmission_tree> <ptree> <output_dimacs_file>
+	     <output_varlist_file>
+	Where:
+	  --help|-h|-help
+	     Print a short help message
+	  -k int
+	     number of co-infection events (default: m-1)
+	  -r int
+	     Root label (default: 0)
+	  -t
+	     Transmission tree instead of host file
+	  -u int
+	     Number of unsampled hosts (default: 0)
+
+An example execution:
+
+  $ ./dimacs ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_dimacs.cnf ../data/sample/sample_varlist.txt -u 1 -k 4
