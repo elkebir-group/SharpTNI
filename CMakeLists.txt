@@ -72,11 +72,7 @@ set( Boost_USE_STATIC_LIBS ON )
 find_package( Boost REQUIRED COMPONENTS thread system filesystem )
 
 include_directories( "${LIBLEMON_ROOT}/include" "src" ${Boost_INCLUDE_DIRS} )
-if (CPLEX)
-  link_directories( ${CPLEX_LIB_DIR} ${CONCERT_LIB_DIR} "${LIBLEMON_ROOT}/lib" )
-else()
-  link_directories( "${LIBLEMON_ROOT}/lib" )
-endif()
+link_directories( "${LIBLEMON_ROOT}/lib" )
 
 set( CommonLibs
   m
