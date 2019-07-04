@@ -4,7 +4,7 @@ home_dir="/home/sashitt2/TNI/data/recomb/simulation/cases"
 
 echo "m kappa case# gammaMin nSankoff nTNI Time" > total.time
 
-for i in 50 #10 30 #5 20 50
+for i in 5 10 20 30 50
 do
   for j in 1 2 3
   do
