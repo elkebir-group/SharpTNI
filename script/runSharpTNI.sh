@@ -21,6 +21,8 @@ ptreeFileName=$4
 logFile=$5
 dimacsFolderName=$6
 
+mkdir -p $dimacsFolderName
+
 echo "gammaMin nSankoff nTNI Time" > $logFile
 
 if [ ! -e $exec_dir/sankoff ]
