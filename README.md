@@ -44,7 +44,7 @@ parsimonious transmission network.
 SharpTNI solver is written in C++11 and requires a modern C++ compiler
 (GCC >= 4.8.1, or Clang). In addition it has the following dependencies
 
-* [CMake](http://www.cmake.org/) (>=2.8)
+* [CMake](http://www.cmake.org/) (>=3.1)
 * [Boost](http://www.boost.org) (>= 1.38)
 * [LEMON](http://lemon.cs.elte.hu/trac/lemon) graph library (>= 1.3)
 
