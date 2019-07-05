@@ -10,12 +10,14 @@ pkg_check_modules(PC_LEMON QUIET lemon)
 set(LEMON_DEFINITIONS ${PC_LEMON_CFLAGS_OTHER})
 
 find_path(LEMON_INCLUDE_DIR lemon/core.h
-    HINTS ${PC_LEMON_INCLUDEDIR} ${PC_LEMON_INCLUDE_DIRS} $ENV{HOME}
-    PATH_SUFFIXES lemon)
+  HINTS ${PC_LEMON_INCLUDEDIR} ${PC_LEMON_INCLUDE_DIRS}
+  PATHS "$ENV{HOME}/lemon"
+  PATH_SUFFIXES include lemon)
 
 find_library(LEMON_LIBRARY NAMES emon libemon
-    HINTS ${PC_LEMON_LIBDIR} ${PC_LEMON_LIBRARY_DIRS} $ENV{HOME}
-    PATH_SUFFIXES lemon)
+  HINTS ${PC_LEMON_LIBDIR} ${PC_LEMON_LIBRARY_DIRS}
+  PATHS "$ENV{HOME}/lemon"
+  PATH_SUFFIXES lib lemon)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(LEMON DEFAULT_MSG
