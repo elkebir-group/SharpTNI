@@ -138,7 +138,7 @@ An example execution:
 
 An example execution:
 
-    $ ./sample_sankoff -l 1 -u 1 ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample
+    $ ./sample_sankoff -l 1 -u 1 ../data/sample/sample_host.out ../data/sample/sample_ptree.out ../data/sample/sample_
 
 
 <a name="clique"></a>

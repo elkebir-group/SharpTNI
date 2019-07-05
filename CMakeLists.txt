@@ -33,4 +33,66 @@ set( CommonLibs
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories( ${LEMON_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} )
 
-add_subdirectory(src)
+set( sankoff_hdr
+  src/utils.h
+  src/basetree.h
+  src/sankoff.h
+  )
+
+set( sankoff_src
+  src/sankoffmain.cpp
+  src/utils.cpp
+  src/basetree.cpp
+  src/sankoff.cpp
+  )
+
+set( sample_sankoff_hdr
+  src/utils.h
+  src/basetree.h
+  src/sankoff.h
+  )
+
+set( sample_sankoff_src
+  src/samplesankoffmain.cpp
+  src/utils.cpp
+  src/basetree.cpp
+  src/sankoff.cpp
+  )
+
+set( dimacs_hdr
+  src/utils.h
+  src/basetree.h
+  src/dimacs.h
+  src/sankoff.h
+  )
+
+set( dimacs_src
+  src/dimacsmain.cpp
+  src/utils.cpp
+  src/basetree.cpp
+  src/sankoff.cpp
+  src/dimacs.cpp
+  )
+
+set( gamma_hdr
+  src/utils.h
+  src/basetree.h
+  )
+
+set( gamma_src
+  src/utils.cpp
+  src/basetree.cpp
+  src/gammamain.cpp
+  )
+
+add_executable( sankoff ${sankoff_src} ${sankoff_hdr} )
+target_link_libraries( sankoff ${CommonLibs} )
+
+add_executable( sample_sankoff ${sample_sankoff_src} ${sample_sankoff_hdr} )
+target_link_libraries( sample_sankoff ${CommonLibs} )
+
+add_executable( dimacs ${dimacs_src} ${dimacs_hdr} )
+target_link_libraries( dimacs ${CommonLibs} )
+
+add_executable( gamma ${gamma_src} ${gamma_hdr} )
+target_link_libraries( gamma ${CommonLibs} )
