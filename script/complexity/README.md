@@ -8,7 +8,7 @@ sat_leaflabels.txt
 Enumerating solutions:
 
 ```
-$ ../../build/sankoff ../../script/sat_tree.txt ../../script/sat_leaflabels.txt sat.sol -r 7 -e -b
+$ ../../build/sankoff sat_tree.txt sat_leaflabels.txt sat.sol -r 7 -e -b
 ```
 
 Grepping sat.sol, we find that smallest gamma is 10:
